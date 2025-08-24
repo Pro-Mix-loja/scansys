@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScanSys Core - Leads</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/theme.css"> 
+    <link rel="stylesheet" href="/css/admin_styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <nav class="admin-nav">
+            <div class="nav-group">
+                <span class="nav-title">Marketing</span>
+                <a href="/admin/dashboard">Painel</a>
+                <a href="/admin/leads" class="active">Leads</a>
+                <a href="/admin/marketing/create">Novo QR</a>
+            </div>
+            <div class="nav-group">
+                <span class="nav-title">Eventos</span>
+                <a href="/admin/events">Leads</a>
+                <a href="/admin/events/create">Novo Evento</a>
+                <a href="/admin/tickets">Venda de Convites</a>
+            </div>
+            <div class="nav-user-group">
+                <span id="user-display-name"></span>
+                <a href="/admin/users" class="action-icon" title="Gerir Utilizadores"><i class="fas fa-users-cog"></i></a>
+                <a href="#" id="logout-btn" title="Sair"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
+        </nav>
+        <h1>Leads Capturados</h1>
+        <p>Visualize os contatos gerados através das suas Páginas de Links.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Cidade</th>
+                        <th>Origem (ID do QR)</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    <tr><td colspan="6">A carregar...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="/auth.js"></script>
+    <script src="/leads.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: scansys
+    env: python
+    plan: free # Usa o plano gratuito do Render
+    branch: main # Publica a partir do ramo 'main' do seu GitHub
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app --workers 4"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.4 # Recomendo usar uma versão específica
+      - key: SERVICE_ACCOUNT_JSON
+        sync: false # Indica que esta é uma variável secreta que configuraremos no site do Render

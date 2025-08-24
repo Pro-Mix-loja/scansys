@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScanSys Core - Ponto de Venda</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/theme.css"> 
+    <link rel="stylesheet" href="/css/admin_styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <nav class="admin-nav">
+            <div class="nav-group admin-only">
+                <span class="nav-title">Marketing</span>
+                <a href="/admin/dashboard">Painel</a>
+                <a href="/admin/leads">Leads</a>
+                <a href="/admin/marketing/create">Novo QR</a>
+            </div>
+            <div class="nav-group">
+                <span class="nav-title">Eventos</span>
+<<<<<<< HEAD
+                <a href="/admin/events" class="admin-only">Painel</a>
+                <a href="/admin/events/create" class="admin-only">Novo Evento</a>
+                <a href="/admin/tickets" class="active">Venda de Convite</a>
+=======
+                <a href="/admin/events" class="admin-only">Dashboard</a>
+                <a href="/admin/events/create" class="admin-only">Novo Evento</a>
+                <a href="/admin/tickets" class="active">Nova Venda</a>
+>>>>>>> 0d99e4a1ee8edb6647e8a132eb70ab8fcc6c0cc3
+            </div>
+            <div class="nav-user-group">
+                <span id="user-display-name"></span>
+                <a href="/admin/users" class="action-icon admin-only" title="Gerir Utilizadores"><i class="fas fa-users-cog"></i></a>
+                <a href="#" id="logout-btn" title="Sair"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
+        </nav>
+        
+        <h1>Ponto de Venda (PDV)</h1>
+        <p>Selecione o evento e preencha os dados para gerar um novo convite.</p>
+
+        <form id="sell-ticket-form">
+            <div class="form-group">
+                <label for="event-select">Selecione o Evento</label>
+                <select id="event-select" required>
+                    <option value="">A carregar eventos...</option>
+                </select>
+            </div>
+            <hr class="form-divider">
+            <div class="form-group">
+<<<<<<< HEAD
+                <label for="buyerName">Nome do Convidado</label>
+=======
+                <label for="buyerName">Nome do Comprador</label>
+>>>>>>> 0d99e4a1ee8edb6647e8a132eb70ab8fcc6c0cc3
+                <input type="text" id="buyerName" required>
+            </div>
+            <div class="form-group">
+                <label for="buyerPhone">Telefone (WhatsApp)</label>
+                <input type="tel" id="buyerPhone" placeholder="(99) 99999-9999" maxlength="15">
+            </div>
+            <div class="form-group">
+                <label for="ticket-type">Tipo de Convite ou Combo</label>
+                <select id="ticket-type" required>
+                    <option value="">Selecione um evento primeiro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ticket-quantity">Quantidade</label>
+                <input type="number" id="ticket-quantity" value="1" min="1" required>
+<<<<<<< HEAD
+            </div>
+            <div class="form-group">
+                <label for="payment-method">Forma de Pagamento</label>
+                <select id="payment-method" required>
+                    <option value="Dinheiro">Dinheiro</option>
+                    <option value="Cartão de Crédito">Crédito</option>
+                    <option value="Cartão de Débito">Débito</option>
+                    <option value="PIX">PIX</option>
+                    <option value="Cortesia">Cortesia</option>
+                    <option value="Cortesia">Fatura Associado</option>
+                </select>
+            </div>
+=======
+            </div>
+            <div class="form-group">
+                <label for="payment-method">Forma de Pagamento</label>
+                <select id="payment-method" required>
+                    <option value="Dinheiro">Dinheiro</option>
+                    <option value="Cartão de Crédito">Cartão de Crédito</option>
+                    <option value="Cartão de Débito">Cartão de Débito</option>
+                    <option value="PIX">PIX</option>
+                    <option value="Cortesia">Cortesia</option>
+                </select>
+            </div>
+>>>>>>> 0d99e4a1ee8edb6647e8a132eb70ab8fcc6c0cc3
+            <button type="submit" style="margin-top: 20px;">Gerar Convite(s)</button>
+        </form>
+
+        <div id="sale-result-area" class="hidden" style="margin-top: 30px;">
+             <h2>Convite(s) Gerado(s) com Sucesso!</h2>
+             <div id="generated-tickets-container"></div>
+             <button type="button" id="new-sale-btn" class="action-btn" style="background-color: var(--cor-acento-secundario);">Nova Venda</button>
+        </div>
+    </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="/auth.js"></script>
+    <script src="/pdv.js"></script>
+</body>
+</html>

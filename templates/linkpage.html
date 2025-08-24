@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>{{ qr_data.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Roboto', sans-serif; background-color: #212121; color: white; display: flex; flex-direction: column; align-items: center; padding: 25px 15px; margin: 0; }
+        .container { width: 100%; max-width: 600px; text-align: center; }
+        h1 { margin-top: 20px; margin-bottom: 30px; font-weight: 700; }
+        a.link-button { display: block; background-color: #007BFF; color: white; padding: 16px 20px; margin: 12px 0; width: 100%; text-align: center; text-decoration: none; border-radius: 8px; font-size: 1.1em; font-weight: bold; transition: transform 0.2s ease; box-sizing: border-box; }
+        a.link-button:hover { transform: scale(1.03); }
+        .lead-form-container { background-color: #333; padding: 20px; border-radius: 8px; margin-top: 30px; }
+        .lead-form-container h2 { margin-top: 0; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 0.9em; }
+        .form-group input { width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #555; background-color: #444; color: white; font-size: 1em; box-sizing: border-box; }
+        .submit-btn { background-color: #28a745; color: white; font-weight: bold; border: none; padding: 12px 20px; font-size: 1em; border-radius: 5px; cursor: pointer; width: 100%; }
+        #form-message { margin-top: 15px; font-weight: bold; }
+        footer { margin-top: 40px; color: #777; font-size: 0.8em; }
+    </style>
+</head>
+<body data-lead-capture-enabled="{{ lead_capture.enabled | tojson }}">
+    <div class="container">
+        <h1>{{ qr_data.title }}</h1>
+        {% for link in qr_data.links %}
+            <a href="{{ link.url }}" class="link-button" target="_blank" rel="noopener noreferrer">{{ link.title }}</a>
+        {% endfor %}
+        {% if lead_capture.enabled %}
+        <div class="lead-form-container">
+            <h2>{{ lead_capture.title or 'Participe!' }}</h2>
+            <form id="lead-form" data-source-id="{{ qr_data.shortId }}">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefone (Opcional)</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="city">Cidade (Opcional)</label>
+                    <input type="text" id="city" name="city">
+                </div>
+                <button type="submit" class="submit-btn">{{ lead_capture.buttonText or 'Enviar' }}</button>
+            </form>
+            <p id="form-message"></p>
+        </div>
+        {% endif %}
+    </div>
+    <script>
+        const isLeadCaptureEnabled = document.body.dataset.leadCaptureEnabled === true || document.body.dataset.leadCaptureEnabled === 'true';
+        if (isLeadCaptureEnabled) {
+            const leadForm = document.getElementById('lead-form');
+            leadForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const sourceId = leadForm.dataset.sourceId; 
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    city: document.getElementById('city').value,
+                    sourceQrId: sourceId
+                };
+                fetch('/api/leads/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const formMessage = document.getElementById('form-message');
+                    if (data.success) {
+                        leadForm.style.display = 'none';
+                        formMessage.style.color = '#28a745';
+                        formMessage.innerText = 'Obrigado! Seu cadastro foi realizado com sucesso.';
+                    } else {
+                        formMessage.style.color = '#dc3545';
+                        formMessage.innerText = 'Erro: ' + data.error;
+                    }
+                })
+                .catch(err => {
+                    const formMessage = document.getElementById('form-message');
+                    formMessage.style.color = '#dc3545';
+                    formMessage.innerText = 'Erro de conexão. Tente novamente.';
+                });
+            });
+        }
+    </script>
+    <footer>Powered by DOB Desenvolvimentos - (48) 98811-8006</footer>
+</body>
+</html>

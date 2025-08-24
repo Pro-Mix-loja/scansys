@@ -1,0 +1,110 @@
+:root {
+  /* Paleta de Cores - Tema Escuro */
+  --cor-fundo: #121212;
+  --cor-superficie: #1E1E1E;
+  --cor-acento-principal: #007BFF;
+  --cor-texto: #FFFFFF;
+  --cor-texto-secundario: #B0B0B0;
+
+  /* Cores de Feedback */
+  --cor-sucesso: #28a745;
+  --cor-alerta: #ffc107;
+  --cor-erro: #dc3545;
+
+  /* Fontes */
+  --fonte-principal: 'Roboto', sans-serif;
+  
+  /* Formatos */
+  --raio-borda: 8px;
+}
+
+/* Reset Básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: var(--fonte-principal);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  height: 100%;
+  text-align: center;
+}
+
+#validator-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  background-color: var(--cor-superficie);
+  padding: 15px;
+  border-bottom: 2px solid var(--cor-acento-principal);
+}
+
+#reader-section {
+  padding: 20px;
+}
+
+#reader {
+  border: 2px solid var(--cor-texto-secundario);
+  border-radius: var(--raio-borda);
+  overflow: hidden;
+}
+
+#result-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  transition: opacity 0.3s ease;
+}
+
+#result-section.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#result-message {
+  font-size: 2.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#ticket-holder-name {
+    font-size: 1.5em;
+    margin-top: 10px;
+    color: var(--cor-texto-secundario);
+}
+
+#scan-next-button {
+  margin-top: 30px;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--raio-borda);
+  background-color: var(--cor-acento-principal);
+  color: var(--cor-texto);
+}
+
+/* Classes de Fundo para o Resultado */
+.success-bg {
+  background-color: var(--cor-sucesso);
+}
+.warning-bg {
+  background-color: var(--cor-alerta);
+}
+.error-bg {
+  background-color: var(--cor-erro);
+}

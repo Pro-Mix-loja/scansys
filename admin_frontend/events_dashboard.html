@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScanSys Core - Painel de Eventos</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/theme.css"> 
+    <link rel="stylesheet" href="/css/admin_styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <nav class="admin-nav">
+            <div class="nav-group">
+                <span class="nav-title">Campanhas</span>
+                <a href="/admin/dashboard">Painel</a>
+                <a href="/admin/leads">Leads</a>
+                <a href="/admin/marketing/create">Novo QR</a>
+            </div>
+            <div class="nav-group">
+                <span class="nav-title">Eventos</span>
+                <a href="/admin/events" class="active">Painel</a>
+                <a href="/admin/events/create">Novo Evento</a>
+                <a href="/admin/tickets">Venda de Convites</a>
+            </div>
+            <div class="nav-user-group">
+                <span id="user-display-name"></span>
+                <a href="/admin/users" class="action-icon" title="Gerir Utilizadores"><i class="fas fa-users-cog"></i></a>
+                <a href="#" id="logout-btn" title="Sair"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
+        </nav>
+<<<<<<< HEAD
+        <h1>Painel de Eventos</h1>
+=======
+        <h1>Dashboard de Eventos</h1>
+>>>>>>> 0d99e4a1ee8edb6647e8a132eb70ab8fcc6c0cc3
+        <p>Gerencie os seus eventos e vendas de convites.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome do Evento</th>
+                        <th>Data</th>
+                        <th>Tipos de Convite (Estado)</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="events-table-body">
+                    <tr><td colspan="4">A carregar...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div id="edit-event-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2>Editar Evento</h2>
+            <form id="edit-event-form">
+                <input type="hidden" id="edit-eventId">
+                <div class="form-group">
+                    <label for="edit-eventName">Nome do Evento</label>
+                    <input type="text" id="edit-eventName" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-eventLocation">Local do Evento</label>
+                    <input type="text" id="edit-eventLocation" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-eventDate">Data do Evento</label>
+                    <input type="date" id="edit-eventDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-eventTime">Horário do Evento</label>
+                    <input type="time" id="edit-eventTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-organizerName">Nome do Realizador (Opcional)</label>
+                    <input type="text" id="edit-organizerName">
+                </div>
+                <div class="form-group">
+                    <label for="edit-supportContact">Contato de Suporte (Opcional)</label>
+                    <input type="text" id="edit-supportContact">
+                </div>
+                <div class="form-group" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #444;">
+                    <label>Tipos de Convite</label>
+                    <div id="edit-ticket-types-container"></div>
+                    <button type="button" id="edit-add-ticket-type-btn" class="action-btn" style="width: auto; padding: 10px 15px;">+ Adicionar Tipo</button>
+                </div>
+                <div class="form-group" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #444;">
+                    <label>Combos</label>
+                    <div id="edit-combos-container"></div>
+                    <button type="button" id="edit-add-combo-btn" class="action-btn" style="width: auto; padding: 10px 15px;">+ Adicionar Combo</button>
+                </div>
+                <div class="form-group" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #444;">
+                    <label for="edit-eventDetails">Informações Complementares (visível no PDF)</label>
+                    <textarea id="edit-eventDetails" rows="6"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="cancel-event-edit-btn">Cancelar</button>
+                    <button type="submit">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="/auth.js"></script>
+    <script src="/events_dashboard.js"></script>
+</body>
+</html>

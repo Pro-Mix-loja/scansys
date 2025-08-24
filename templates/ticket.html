@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Convite - {{ event.eventName }}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+
+        /* Configurações da página A4 */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        .page-container {
+            width: 210mm; /* Largura de uma página A4 */
+            min-height: 297mm; /* Altura de uma página A4 */
+            padding: 20mm;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        .ticket {
+            width: 100%;
+            height: 280px; /* Altura fixa para o convite */
+            background-color: #2c2f33;
+            color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            overflow: hidden;
+            flex-shrink: 0; /* Impede que o convite encolha */
+        }
+        .main-info {
+            flex: 2;
+            padding: 25px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .main-info h1 {
+            font-size: 36px;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            color: #ffffff;
+            line-height: 1.2;
+            text-transform: uppercase;
+            word-break: break-word;
+        }
+        .main-info p {
+            font-size: 18px;
+            color: #a7a9ac;
+            margin: 0;
+        }
+        .details-row {
+            display: flex;
+            gap: 20px;
+        }
+        .detail-item .label {
+            font-size: 12px;
+            color: #a7a9ac;
+            text-transform: uppercase;
+        }
+        .detail-item .value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .sidebar {
+            flex: 1;
+            background: linear-gradient(160deg, #4364f7, #0052d4);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .sidebar .qr-code {
+            background-color: white;
+            padding: 8px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .sidebar .guest-info .label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+        .sidebar .guest-info .value {
+            font-size: 18px;
+            font-weight: 700;
+            word-break: break-word;
+        }
+        .sidebar .ticket-id {
+            font-family: monospace;
+            font-size: 10px;
+            color: #ffffff;
+            opacity: 0.7;
+            margin-top: 10px;
+        }
+        .footer {
+            border-top: 1px solid #444;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+        .footer p {
+            margin: 0;
+            font-size: 12px;
+            color: #a7a9ac;
+        }
+        
+        /* NOVO: Estilos para a área de informações complementares */
+        .complementary-info {
+            margin-top: 25mm;
+            padding-top: 20mm;
+            border-top: 1px solid #e0e0e0;
+            color: #333;
+        }
+        .complementary-info h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 0;
+            color: #0052d4;
+        }
+        .complementary-info .details-text {
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap; /* Mágica! Preserva as quebras de linha e espaços do texto inserido */
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="ticket">
+            <div class="main-info">
+                <div>
+                    <p>{{ event.eventLocation }} &bull; {{ event.eventDateFormatted }} às {{ event.eventTime }}</p>
+                    <h1>{{ event.eventName }}</h1>
+                </div>
+                <div>
+                    <div class="details-row">
+                        <div class="detail-item">
+                            <span class="label">Tipo de Convite</span>
+                            <span class="value">{{ ticket.ticketType }}</span>
+                        </div>
+                        {% if ticket.controlNumber %}
+                        <div class="detail-item">
+                            <span class="label">Controle</span>
+                            <span class="value">{{ ticket.controlNumber }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="footer">
+                        <p>Aproveite o evento!</p>
+                        {% if event.supportContact %}
+                            <p>Contato de Suporte: {{ event.supportContact }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <div class="qr-code">
+                    <img src="data:image/png;base64,{{ qr_code_b64 }}" alt="QR Code" style="width: 125px; height: 125px; display: block;">
+                </div>
+                <div class="guest-info">
+                    <span class="label">Convidado</span>
+                    <span class="value">{{ ticket.buyerName }}</span>
+                </div>
+                <div class="ticket-id">
+                    ID: {{ ticket.ticketId }}
+                </div>
+            </div>
+        </div>
+
+        {% if event.eventDetails %}
+        <div class="complementary-info">
+            <h2>Informações Adicionais</h2>
+            <div class="details-text">
+                {{ event.eventDetails }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

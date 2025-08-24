@@ -1,0 +1,166 @@
+/* Container principal do painel admin */
+.admin-container {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--cor-superficie);
+    border-radius: var(--raio-borda);
+}
+/* Navegação */
+.nav-group { display: flex; align-items: center; gap: 15px; }
+.nav-title { font-weight: bold; color: var(--cor-texto-secundario); font-size: 0.9em; margin-right: 5px; }
+.admin-nav {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--cor-acento-principal);
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+.admin-nav a {
+    color: var(--cor-texto-secundario);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: var(--raio-borda);
+    transition: background-color 0.2s;
+}
+.admin-nav a:hover {
+    background-color: #333;
+}
+.admin-nav a.active {
+    color: var(--cor-texto);
+    background-color: var(--cor-acento-principal);
+}
+/* Estilos de Formulário */
+.form-group { margin-bottom: 15px; }
+label { display: block; margin-bottom: 5px; color: var(--cor-texto-secundario); }
+input, select, button {
+    width: 100%; padding: 12px; border-radius: var(--raio-borda); border: 1px solid #444;
+    background-color: #333; color: var(--cor-texto); font-size: 1em;
+}
+button { background-color: var(--cor-acento-principal); font-weight: bold; cursor: pointer; margin-top: 10px; }
+#response-area { margin-top: 20px; padding: 15px; border-radius: var(--raio-borda); text-align: center; }
+#response-area.hidden { display: none; }
+#qrcode-container { background-color: white; padding: 15px; margin-top: 15px; display: inline-block; border-radius: var(--raio-borda); }
+/* Estilos para o formulário dinâmico de links */
+.qr-type-selector { display: flex; gap: 20px; margin-bottom: 20px; }
+.qr-type-selector label { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.link-entry { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; padding: 10px; border: 1px solid #444; border-radius: var(--raio-borda); }
+.link-entry input { margin-bottom: 0; }
+.link-entry .field-group { flex-grow: 1; }
+.remove-link-btn {
+    background-color: var(--cor-erro); border: none; color: white; font-weight: bold; cursor: pointer;
+    border-radius: 50%; width: 30px; height: 30px; line-height: 30px; text-align: center; padding: 0;
+}
+/* Estilos do Modal de Edição */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7);
+    display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 1; transition: opacity 0.3s ease;
+}
+.modal-overlay.hidden { opacity: 0; pointer-events: none; }
+.modal-content {
+    background-color: var(--cor-superficie); padding: 30px; border-radius: var(--raio-borda);
+    width: 90%; max-width: 500px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+/* Estilos para Ícones de Ação */
+.action-icon {
+    display: inline-block; width: 32px; height: 32px; line-height: 32px; text-align: center;
+    border-radius: 50%; color: white; text-decoration: none; margin: 0 4px; transition: transform 0.2s ease;
+}
+.action-icon:hover { transform: scale(1.15); }
+.action-icon-edit { background-color: var(--cor-acento-principal); }
+.action-icon-delete { background-color: var(--cor-erro); }
+/* Estilos para tags de status de bilhetes */
+.ticket-type-tag {
+    display: inline-block; padding: 3px 8px; border-radius: 4px;
+    font-size: 0.8em; margin: 2px; color: white;
+}
+.status-active { background-color: var(--cor-sucesso); }
+.status-inactive { background-color: #6c757d; text-decoration: line-through; }
+
+/* --- NOVO ESTILO ADICIONADO --- */
+/* Estilo para botões de ação genéricos (como os de download de PDF) */
+.action-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: var(--raio-borda);
+    background-color: var(--cor-acento-principal);
+    color: var(--cor-texto);
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+.action-btn:hover {
+    transform: scale(1.05);
+}
+
+/* --- NOVO ESTILO PARA O CABEÇALHO DO RELATÓRIO --- */
+.report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* --- NOVO ESTILO ADICIONADO --- */
+.status-deleted {
+    background-color: #343a40; /* Cinza Escuro */
+    text-decoration: line-through;
+}
+
+/* =============================================== */
+/* ESTILOS PARA A TELA DE RESULTADO DO PDV         */
+/* =============================================== */
+
+/* Estilo para cada card de bilhete gerado */
+.ticket-result-entry {
+    background-color: var(--cor-fundo-secundario);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-result-entry .ticket-info p {
+    margin: 0 0 8px 0;
+    color: var(--cor-texto-secundario);
+}
+
+.ticket-result-entry .ticket-info p strong {
+    color: var(--cor-texto);
+}
+
+/* Container para os botões de ação */
+.ticket-result-entry .ticket-actions {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+}
+
+/* Adiciona margem à direita do botão de PDF para afastá-lo */
+.ticket-result-entry .ticket-actions .pdf-btn {
+    margin-right: 10px; 
+}
+
+/* Estilo específico para o botão do WhatsApp */
+.ticket-result-entry .ticket-actions .whatsapp-btn {
+    background-color: #25D366; /* Cor verde oficial do WhatsApp */
+    color: white;
+}
+
+.ticket-result-entry .ticket-actions .whatsapp-btn:hover {
+    background-color: #128C7E; /* Cor mais escura para o efeito hover */
+}
+
+/* Ajuste para ícones dentro dos botões de ação */
+.ticket-actions .action-btn i {
+    margin-right: 8px;
+}

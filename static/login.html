@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ScanSys - Login</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+  <link rel="stylesheet" href="/css/theme.css"/>
+  <link rel="stylesheet" href="/css/login_styles.css"/>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <img src="/favicon.ico" alt="ScanSys Logo" class="logo">
+      <h1>Bem-vindo ao ScanSys</h1>
+<<<<<<< HEAD
+      <p>Faça login para acessar ao painel.</p>
+=======
+      <p>Faça login para aceder ao painel.</p>
+>>>>>>> 0d99e4a1ee8edb6647e8a132eb70ab8fcc6c0cc3
+      <form id="login-form">
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" placeholder="Palavra-passe" required>
+        </div>
+        <button type="submit">Entrar</button>
+      </form>
+      <p id="error-message" class="hidden"></p>
+    </div>
+  </div>
+
+  <!-- Ordem dos scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <!-- Seu guardião global corrigido -->
+  <script src="/auth.js"></script>
+
+  <!-- Script de login minimalista (NÃO re-inicializa Firebase) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const loginForm = document.getElementById('login-form');
+      const errorMessage = document.getElementById('error-message');
+
+      loginForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        errorMessage.classList.add('hidden');
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+
+        try {
+          await firebase.auth().signInWithEmailAndPassword(email, password);
+          // O onAuthStateChanged em auth.js fará o redirecionamento
+        } catch (error) {
+          console.error('Erro de login:', error);
+          errorMessage.textContent = 'Email ou palavra-passe inválidos.';
+          errorMessage.classList.remove('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

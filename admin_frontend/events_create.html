@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScanSys Core - Novo Evento</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/theme.css"> 
+    <link rel="stylesheet" href="/css/admin_styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <nav class="admin-nav">
+            <div class="nav-group">
+                <span class="nav-title">Marketing</span>
+                <a href="/admin/dashboard">Dashboard</a>
+                <a href="/admin/leads">Leads</a>
+                <a href="/admin/marketing/create">Novo QR</a>
+            </div>
+            <div class="nav-group">
+                <span class="nav-title">Eventos</span>
+                <a href="/admin/events">Dashboard</a>
+                <a href="/admin/events/create" class="active">Novo Evento</a>
+                <a href="/admin/tickets">Venda de Convites</a>
+            </div>
+            <div class="nav-user-group">
+                <span id="user-display-name"></span>
+                <a href="/admin/users" class="action-icon" title="Gerir Utilizadores"><i class="fas fa-users-cog"></i></a>
+                <a href="#" id="logout-btn" title="Sair"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
+            <div class="nav-user-group">
+                <span id="user-display-name"></span>
+                <a href="/admin/users" class="action-icon" title="Gerir Utilizadores"><i class="fas fa-users-cog"></i></a>
+                <a href="#" id="logout-btn" title="Sair"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
+        </nav>
+        <h1>Cadastrar Novo Evento</h1>
+        <p>Defina as informações principais, os tipos de convite e os combos para o seu evento.</p>
+
+        <form id="event-form">
+            <div class="form-group">
+                <label for="eventName">Nome do Evento</label>
+                <input type="text" id="eventName" placeholder="Ex: Show de Lançamento" required>
+            </div>
+            <div class="form-group">
+                <label for="eventLocation">Local do Evento</label>
+                <input type="text" id="eventLocation" placeholder="Ex: Estádio Principal" required>
+            </div>
+            <div class="form-group">
+                <label for="eventDate">Data do Evento</label>
+                <input type="date" id="eventDate" required>
+            </div>
+            <div class="form-group">
+                <label for="eventTime">Horário do Evento</label>
+                <input type="time" id="eventTime" required>
+            </div>
+            <div class="form-group">
+                <label for="organizerName">Nome do Realizador (Opcional)</label>
+                <input type="text" id="organizerName" placeholder="Ex: Minha Produtora">
+            </div>
+            <div class="form-group">
+                <label for="supportContact">Contacto de Suporte (Opcional)</label>
+                <input type="text" id="supportContact" placeholder="Ex: contato@meuevento.com">
+            </div>
+
+            <div class="form-section">
+                <label>Tipos de Convite</label>
+                <div id="ticket-types-container"></div>
+                <button type="button" id="add-ticket-type-btn" class="action-btn" style="width: auto; padding: 10px 15px;">+ Adicionar Tipo</button>
+            </div>
+            
+            <div class="form-section">
+                <label>Combos (Opcional)</label>
+                <div id="combos-container"></div>
+                <button type="button" id="add-combo-btn" class="action-btn" style="width: auto; padding: 10px 15px;">+ Adicionar Combo</button>
+            </div>
+
+            <div class="form-section">
+                <label for="eventDetails">Informações Complementares (visível no PDF)</label>
+                <textarea id="eventDetails" rows="6" placeholder="Ex: Cronograma do evento, funcionamento do bar, mapa das mesas... Este texto aparecerá abaixo do convite no PDF."></textarea>
+            </div>
+
+            <button type="submit" style="margin-top: 20px;">Guardar Evento</button>
+        </form>
+        
+        <div id="response-area" class="hidden"></div>
+    </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="/auth.js"></script>
+    <script src="/events_create.js"></script>
+</body>
+</html>

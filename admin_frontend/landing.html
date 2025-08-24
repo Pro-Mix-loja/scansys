@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo ao ScanSys</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/theme.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--cor-fundo);
+            font-family: var(--fonte-principal);
+            color: var(--cor-texto);
+            text-align: center;
+        }
+        .portal-container {
+            background-color: var(--cor-superficie);
+            padding: 50px;
+            border-radius: var(--raio-borda);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 450px;
+        }
+        .logo {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: var(--cor-acento-principal);
+            margin-bottom: 15px;
+        }
+        p {
+            color: var(--cor-texto-secundario);
+            margin-bottom: 40px;
+        }
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .action-link {
+            display: block;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: var(--raio-borda);
+            transition: transform 0.2s ease, background-color 0.2s;
+        }
+        .action-link:hover {
+            transform: scale(1.05);
+        }
+        .primary-action {
+            background-color: var(--cor-acento-principal);
+            color: var(--cor-texto);
+        }
+        .secondary-action {
+            background-color: #333;
+            color: var(--cor-texto-secundario);
+        }
+    </style>
+</head>
+<body>
+    <div class="portal-container">
+        <img src="/favicon.ico" alt="ScanSys Logo" class="logo">
+        <h1>Bem-vindo ao ScanSys</h1>
+        <p>Sistema Gestão de QR Codes.</p>
+        <div class="actions">
+            <a href="/admin" class="action-link primary-action">Acessar ao Painel de Controle</a>
+            <a href="/validator" class="action-link secondary-action">Abrir Validador de Convites</a>
+        </div>
+    </div>
+</body>
+</html>

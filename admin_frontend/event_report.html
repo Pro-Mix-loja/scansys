@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScanSys Core - Relatório de Vendas</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/theme.css"> 
+    <link rel="stylesheet" href="/css/admin_styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <nav class="admin-nav">
+            <!-- GRUPO DE MARKETING (Apenas Admin) -->
+            <div class="nav-group admin-only">
+                <span class="nav-title">Marketing</span>
+                <a href="/admin/dashboard">Painel</a>
+                <a href="/admin/leads">Leads</a>
+                <a href="/admin/marketing/create">Novo QR</a>
+            </div>
+            <!-- GRUPO DE EVENTOS -->
+            <div class="nav-group">
+                <span class="nav-title">Eventos</span>
+                <!-- Links de Dashboard e Novo Evento (Apenas Admin) -->
+                <a href="/admin/events" class="active admin-only">Painel</a>
+                <a href="/admin/events/create" class="admin-only">Novo Evento</a>
+                <!-- Link de Nova Venda (Visível para todos) -->
+                <a href="/admin/tickets">Venda de Convite</a>
+            </div>
+            <!-- GRUPO DO UTILIZADOR -->
+            <div class="nav-user-group">
+                <span id="user-display-name"></span>
+                <!-- Link de Gestão de Utilizadores (Apenas Admin) -->
+                <a href="/admin/users" class="action-icon admin-only" title="Gerir Utilizadores"><i class="fas fa-users-cog"></i></a>
+                <a href="#" id="logout-btn" title="Sair"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
+        </nav>
+        
+        <div class="report-header">
+            <h1 id="report-title">Relatório de Vendas</h1>
+            <button id="export-csv-btn" class="action-btn"><i class="fas fa-file-csv"></i> Exportar para CSV</button>
+        </div>
+        
+        <p id="report-summary">Total de convites vendidos: <strong><span id="total-tickets">0</span></strong> | Faturação: <strong>R$ <span id="total-revenue">0.00</span></strong></p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data da Venda</th>
+                        <th>Comprador</th>
+                        <th>Tipo de Convite</th>
+                        <th>Pagamento</th>
+                        <th>Vendido Por</th>
+                        <th>Estado</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="report-table-body">
+                    <tr><td colspan="7">A carregar relatório...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="/auth.js"></script>
+    <script src="/event_report.js"></script>
+</body>
+</html>
